@@ -1,3 +1,14 @@
+trigger:
+- main
+
+variables:
+  # Azure service connection established during pipeline creation
+  azureSubscription: Snow Commerce Dev
+  appName: fnapp-spencerislearning-dev
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+
 pool:
   vmImage: 'windows-latest'
 steps:
@@ -22,16 +33,6 @@ steps:
   inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
     artifactName: 'drop'
-
-trigger:
-- main
-
-variables:
-  # Azure service connection established during pipeline creation
-  azureSubscription: Snow Commerce Dev
-  appName: fnapp-spencerislearning-dev
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
 
 - task: AzureFunctionApp@1 # Add this at the end of your file
   inputs:
