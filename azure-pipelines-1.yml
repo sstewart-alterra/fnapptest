@@ -1,0 +1,44 @@
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    exclude:
+      - "**readme.md"
+      - "**README.md"
+
+pr:
+  branches:
+    include:
+    - main
+  paths:
+    exclude:
+      - "**readme.md"
+      - "**README.md"
+
+stages:
+- stage: BuildAndTest
+  displayName: 'Build & Test Stage'
+  jobs:
+  - deployment: BuildTest
+    displayName: Build and Test
+    environment: dev
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: |
+              echo "Building and testing script"
+
+- stage: Deploy UAT
+  displayName: 'Deploy UAT'
+  jobs:
+  - deployment: DeployUAT
+    displayName: Deploy UAT
+    environment: uat
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: |
+              echo "Deployment script"
