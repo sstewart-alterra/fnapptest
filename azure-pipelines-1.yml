@@ -30,7 +30,7 @@ stages:
           - script: |
               echo "Building and testing script"
 
-- stage: Deploy UAT
+- stage: DeployUAT
   displayName: 'Deploy UAT'
   jobs:
   - deployment: DeployUAT
