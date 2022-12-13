@@ -32,6 +32,7 @@ stages:
 
 - stage: DeployUAT
   displayName: 'Deploy UAT'
+  condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'main')) # Only runs if triggered by merge to main
   jobs:
   - deployment: DeployUAT
     displayName: Deploy UAT
