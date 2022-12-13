@@ -29,6 +29,7 @@ stages:
           steps:
           - script: |
               echo "Building and testing script"
+              echo $(Build.SourceBranchName)
 
 - stage: DeployUAT
   displayName: 'Deploy UAT'
